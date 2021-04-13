@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { ProductComponent } from './product/product.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { ProductComponent } from './product/product.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],

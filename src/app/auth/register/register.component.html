@@ -1,1 +1,66 @@
-<p>register works!</p>
+<div class="row align-items-center justify-content-center">
+    <div class="col-md-6">
+        <img src="assets/Add User-pana.svg" class="img-fluid">
+    </div>
+
+    <div class="col-md-4">
+        <form [formGroup]="signupForm">
+            <h1 class="h3 mb-3 fw-normal text-center">Join with us</h1>
+
+            <div class="mb-3">
+                <label class="form-label">First Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="first_name" placeholder="First Name">
+                <div *ngIf="signupForm.controls['first_name'].invalid && (signupForm.controls['first_name'].dirty || signupForm.controls['first_name'].touched)" class="text-danger">
+                    <div *ngIf="signupForm.controls['first_name'].errors.required">
+                        First name is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="last_name" placeholder="Last Name">
+                <div *ngIf="signupForm.controls['last_name'].invalid && (signupForm.controls['last_name'].dirty || signupForm.controls['last_name'].touched)" class="text-danger">
+                    <div *ngIf="signupForm.controls['last_name'].errors.required">
+                        Last name is required
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Email address <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" formControlName="email" placeholder="Email address">
+                <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)" class="text-danger">
+                    <div *ngIf="signupForm.controls['email'].errors.required">
+                        Email address is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="password" placeholder="Password">
+                <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="text-danger">
+                    <div *ngIf="signupForm.controls['password'].errors.required">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password Confirmation <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" formControlName="password_confirmation" placeholder="Password Confirmation">
+                <div *ngIf="signupForm.controls['password_confirmation'].invalid && (signupForm.controls['password_confirmation'].dirty || signupForm.controls['password_confirmation'].touched)" class="text-danger">
+                    <div *ngIf="signupForm.controls['password_confirmation'].errors.required">
+                        Password confirmation is required
+                    </div>
+                </div>
+            </div>
+
+
+            <button class="w-100 btn btn-sm btn-danger" [disabled]="!signupForm.valid" type="submit">Sign up</button>
+
+        </form>
+    </div>
+</div>
+

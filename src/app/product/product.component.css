@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+
+.hero h2{
+    font-size: 60px;
+    font-weight: 700!important;
+    font-family: 'Work Sans', sans-serif;
+}
+.hero h2 span{
+    font-size: 60px;
+    font-weight: 700!important;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.hero p {
+    font-size: 18px; 
+}
+
+.hero span {
+    font-size: 20px;
+    font-weight: 400;
+}
