@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  item_count;
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.item_count = JSON.parse(localStorage.getItem('cart'));
+
+    console.log(this.item_count.length);
+    
   }
 
 }
