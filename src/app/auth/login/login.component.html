@@ -1,0 +1,39 @@
+<div class="row align-items-center justify-content-center">
+
+    <div class="col-md-6">
+        <img src="assets/Secure login-pana.svg" class="img-fluid">
+    </div>
+    
+    <div class="col-md-4">
+        <form [formGroup]="loginForm">
+            <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+
+            <div class="mb-3">
+                <label class="form-label">Email address <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" formControlName="email" placeholder="Email address">
+                <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="text-danger">
+                    <div *ngIf="loginForm.controls['email'].errors.required">
+                        Email address is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label  class="form-label">Password <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="text-danger">
+                    <div *ngIf="loginForm.controls['password'].errors.required">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="w-100 btn btn-sm btn-primary" [disabled]="!loginForm.valid" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>
