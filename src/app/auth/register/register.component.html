@@ -73,6 +73,9 @@
                     <div *ngIf="signupForm.controls['password_confirmation'].errors.required">
                         Password confirmation is required
                     </div>
+                    <div *ngIf="signupForm.controls['password_confirmation'].errors.confirmedValidator">
+                        password confirmation not matched
+                    </div>
                 </div>
             </div>
 
