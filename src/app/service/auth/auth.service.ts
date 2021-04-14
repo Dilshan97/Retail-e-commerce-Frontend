@@ -24,7 +24,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('auth');
-    this._router.navigate(['login']);
+    this._router.navigate(['/']);
     return this.http.post(environment.customer_microservice_url + '/auth/logout', 'logout');
   }
 
@@ -33,6 +33,14 @@ export class AuthService {
       return !!JSON.parse(localStorage.getItem('auth')).accessToken;
     } else {
       return false;
+    }
+  }
+
+  loggedUserName() {
+    if(localStorage.getItem('auth') != null) {
+      if (JSON.parse(localStorage.getItem('auth')).user != null) {
+        return JSON.parse(localStorage.getItem('auth')).user.username;
+      }
     }
   }
 

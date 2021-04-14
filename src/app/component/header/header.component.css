@@ -1,4 +1,9 @@
-.navbar-nav > li{
-    margin-left:15px;
-    margin-right:15px;
-  }
+.navbar-nav>li {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.dis-block {
+  display: block !important;
+  transition: all .5s ease;
+}
