@@ -15,6 +15,9 @@
                     <div *ngIf="loginForm.controls['email'].errors.required">
                         Email address is required
                     </div>
+                    <div *ngIf="loginForm.controls['email'].errors.email">
+                        Email is invalid format
+                    </div>
                 </div>
             </div>
 

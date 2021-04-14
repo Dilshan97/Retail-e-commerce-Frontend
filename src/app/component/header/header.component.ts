@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { ProductCategoryService } from 'src/app/service/product_category/product-category.service';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +10,23 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 export class HeaderComponent implements OnInit {
 
   item_count;
+  product_categories = [];
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    public productCategoryService: ProductCategoryService
   ) { }
 
   ngOnInit() {
     this.item_count = JSON.parse(localStorage.getItem('cart'));
+
+    this.productCategoryService.getProductCatgories().subscribe(res => {
+      if(res) {
+        this.product_categories = res['product_category_list'];
+      }
+    }, err => {
+      console.log(err);
+    });
   }
 
 

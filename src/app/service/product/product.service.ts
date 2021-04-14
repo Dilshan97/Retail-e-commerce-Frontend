@@ -14,4 +14,8 @@ export class ProductService {
   getProducts() {
     return this.http.get(environment.product_microservice_url + '/product');
   }
+
+  getProductsByCategory(slug) {
+    return this.http.get(environment.product_microservice_url + `/product/category/${slug}`);
+  }
 }

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     } else {
       this.loginForm = this.fb.group({
-        email: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required]
       });
     }

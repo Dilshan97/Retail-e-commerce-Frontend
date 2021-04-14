@@ -16,6 +16,18 @@
           <a class="nav-link" aria-current="page" routerLink="/">Home</a>
         </li>
 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" (click)="profileToggle()">
+            Shop By Category
+            <ul class="dropdown-menu" id="profile">
+              <li *ngFor="let product_category of product_categories;">
+                <a class="dropdown-item" routerLink="/product/category/{{product_category?.category_slug}}">{{product_category?.category_name}}</a>
+              </li>
+              
+            </ul>
+          </a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="/cart">Cart <span class="badge rounded-pill bg-danger">{{this.item_count?.length}}</span></a>
         </li>

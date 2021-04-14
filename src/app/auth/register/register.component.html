@@ -50,6 +50,9 @@
                     <div *ngIf="signupForm.controls['email'].errors.required">
                         Email address is required
                     </div>
+                    <div *ngIf="signupForm.controls['email'].errors.email">
+                        Email is invalid format
+                    </div>
                 </div>
             </div>
 
