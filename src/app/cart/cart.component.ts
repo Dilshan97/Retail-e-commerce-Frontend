@@ -10,6 +10,7 @@ import { Cart } from '../shared/cart';
 export class CartComponent implements OnInit {
 
   cart_items;
+  total_bill;
   cardForm: FormGroup;
 
   constructor(
@@ -26,6 +27,7 @@ export class CartComponent implements OnInit {
     });
 
     this.getItems();
+    this.getBill();
   }
 
   onSubmit(){
@@ -36,8 +38,14 @@ export class CartComponent implements OnInit {
     return this.cart_items = Cart.getCartItems();
   }
 
+  getBill() {
+    this.total_bill = Cart.getCartTotal();
+  }
+
   remove_product(item) {
     Cart.removeCartItem(item);
+    this.getBill();
+    this.getItems();
   }
 
   value = 0;
@@ -67,4 +75,5 @@ export class CartComponent implements OnInit {
     var aside2 = document.getElementsByClassName('creditcard');
     aside2[0].classList.remove('flipped');
   }
+
 }

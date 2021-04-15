@@ -45,4 +45,7 @@ export class ViewProductComponent implements OnInit {
     return value.length > limit ? value.substr(0, limit) + ellipsis : value;
   }
 
+  transformText(slug) {
+    return slug.replace('-', ' ');
+  }
 }

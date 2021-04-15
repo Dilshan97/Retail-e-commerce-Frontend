@@ -31,7 +31,7 @@ export class ProductComponent implements OnInit {
     Cart.addToCart(product);
   }
 
-  transform(value: string, limit = 25, completeWords = false, ellipsis = '...') {
+  transform(value: string, limit = 50, completeWords = false, ellipsis = '...') {
     if (completeWords) {
       limit = value.substr(0, limit).lastIndexOf(' ');
     }

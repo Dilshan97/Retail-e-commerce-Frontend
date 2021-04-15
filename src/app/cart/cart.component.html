@@ -13,16 +13,26 @@
                     <p class="product-margin">{{transform(item?.product.product_description)}}</p>
                 </td>
 
-                <td>
-                    <strong>LKR {{item?.quantity * item?.product.price}}</strong>
+                <td class="text-center">
+                    {{item?.quantity}}
                 </td>
 
-                <td>
+                <td class="text-right">
+                    <strong class="text-right">LKR {{item?.quantity * item?.product.price}}</strong>
+                </td>
+
+                <td class="text-center">
                     <span class="remove-product" (click)="remove_product(item)"><i
                             class="far fa-times-circle"></i></span>
                 </td>
             </tr>
 
+            <tr>
+                <td></td>
+                <td></td>
+                <td><strong>Subtotal</strong></td>
+                <td><strong>LKR {{total_bill}}</strong></td>
+            </tr>
         </table>
     </div>
 

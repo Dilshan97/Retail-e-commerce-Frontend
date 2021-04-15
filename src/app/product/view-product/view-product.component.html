@@ -1,16 +1,21 @@
-<div class="row">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{transformText(product_slug) | titlecase}}</li>
+    </ol>
+</nav>
 
+<div class="row">
     <div class="col-md-3 mb-3" *ngFor="let product of products">
         <div class="card shadow bg-body rounded">
             <img src="{{product?.product_image}}" alt="{{product?.product_name}}" class="img-fluid" loading="lazy">
             <span class="badge text-dark">{{product?.category}}</span>
             <div class="card-body">
-                <h4>{{product?.product_name}}</h4>
+                <h4 class="product-name">{{product?.product_name}}</h4>
                 <p class="card-text">{{transform(product?.product_description)}}</p>
                 <p>Rs. {{product?.price}}</p>
                 <button class="btn btn-danger btn-sm" (click)="addToCart(product)"><i class="fas fa-cart-plus"></i> Add
                     to cart</button>
-
             </div>
         </div>
     </div>

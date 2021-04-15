@@ -1,40 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
 
-.hero h2{
-    font-size: 60px;
-    font-weight: 700!important;
-    font-family: 'Work Sans', sans-serif;
+.hero h2 {
+  font-size: 60px;
+  font-weight: 700 !important;
+  font-family: 'Work Sans', sans-serif;
 }
-.hero h2 span{
-    font-size: 60px;
-    font-weight: 700!important;
-    font-family: 'Work Sans', sans-serif;
+
+.hero h2 span {
+  font-size: 60px;
+  font-weight: 700 !important;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .hero p {
-    font-size: 18px; 
+  font-size: 18px;
 }
 
 .hero span {
-    font-size: 20px;
-    font-weight: 400;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .shop-here {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.product-name {
+  font-size: 20px;
 }
 
 @-webkit-keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
 }
+
 @keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-20px);
+  }
 }
 
 
 .hero img {
-    -webkit-animation: mover 2s infinite  alternate;
-    animation: mover 2s infinite  alternate;
+  -webkit-animation: mover 2s infinite alternate;
+  animation: mover 2s infinite alternate;
 }
