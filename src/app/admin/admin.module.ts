@@ -9,7 +9,7 @@ import { OrderComponent } from './order/order.component';
 const components = [
     AdminComponent,
     DashboardComponent,
-    OrderComponent
+    OrderComponent,
 ];
 
 @NgModule({

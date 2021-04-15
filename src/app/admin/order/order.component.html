@@ -1,1 +1,34 @@
-<p>order works!</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Orders</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>E-mail</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let customer of customers; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{customer?.first_name}}</td>
+                    <td>{{customer?.last_name}}</td>
+                    <td>{{customer?.email}}</td>
+                    <td>{{customer?.username}}</td>
+                </tr>
+
+                
+            </tbody>
+        </table>
+    </div>
+</div>
