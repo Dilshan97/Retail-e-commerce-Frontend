@@ -1,7 +1,15 @@
 <div class="row padding">
     <div class="col-md-8">
         <h2 class="mb-3">Shppoing Card</h2>
-        <table>
+
+        <div class="text-center" *ngIf="cart_items.length == 0">
+            <img src="assets/Add to Cart-cuate.svg" class="empty-cart ">
+            <h3><strong>Your cart is empty !</strong></h3>
+            <p>Add something to make me happy :)</p>
+            <button class="btn btn-danger" routerLink="/">Shop here</button>
+        </div>
+
+        <table *ngIf="cart_items.length != 0">
             <tr *ngFor="let item of cart_items; let i = index" class="mb-3">
 
                 <td style="width: 15%">

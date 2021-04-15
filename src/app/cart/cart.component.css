@@ -29,3 +29,7 @@ h2 {
     color: #dc3545;
 }
 
+.empty-cart {
+    max-width: 60%;
+    height: auto;
+}

@@ -1,4 +1,3 @@
-
 export class Cart {
 
   static items: { product: any; quantity: number; };

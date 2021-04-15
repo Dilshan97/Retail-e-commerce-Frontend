@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ProductService } from 'src/app/service/product/product.service';
 import { Cart } from 'src/app/shared/cart';
 
@@ -15,7 +16,8 @@ export class ViewProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -36,6 +38,7 @@ export class ViewProductComponent implements OnInit {
 
   addToCart(product) {
     Cart.addToCart(product);
+    this.toastr.success('Item added to the cart', 'Success !');
   }
 
   transform(value: string, limit = 25, completeWords = false, ellipsis = '...') {

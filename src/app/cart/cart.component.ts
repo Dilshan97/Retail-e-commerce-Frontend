@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Cart } from '../shared/cart';
 
 @Component({
@@ -14,7 +15,8 @@ export class CartComponent implements OnInit {
   cardForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class CartComponent implements OnInit {
 
   remove_product(item) {
     Cart.removeCartItem(item);
+    this.toastr.success('Removed the item from cart', 'Success !');
     this.getBill();
     this.getItems();
   }
