@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Cart } from '../shared/cart';
 
 @Component({
   selector: 'app-cart',
@@ -16,26 +17,11 @@ export class CartComponent implements OnInit {
   }
 
   getItems(){
-    return this.cart_items = JSON.parse(localStorage.getItem('cart')); 
+    return this.cart_items = Cart.getCartItems(); 
   }
 
   remove_product(item) {
-    let shopping_cart;
-    let index;
-
-    shopping_cart = JSON.parse(localStorage.getItem('cart'));
-
-    for(let i in shopping_cart){
-      if (item.product.product_name == shopping_cart[i].product.product_name){
-        index = i;
-      }
-    }
-
-    console.log(index);
-    
-    shopping_cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(shopping_cart));
-    this.getItems();
+    Cart.removeCartItem(item);
   }
 
   value = 0;
@@ -47,5 +33,12 @@ export class CartComponent implements OnInit {
   }
   handlePlus() {
     this.value++;    
+  }
+
+  transform(value: string, limit = 25, completeWords = false, ellipsis = '...') {
+    if (completeWords) {
+      limit = value.substr(0, limit).lastIndexOf(' ');
+    }
+    return value.length > limit ? value.substr(0, limit) + ellipsis : value;
   }
 }

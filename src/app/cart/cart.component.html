@@ -20,7 +20,7 @@
                     </td>
                     <td>
                         <strong>{{item?.product.product_name}}</strong>
-                        <p>{{item?.product.product_description | truncate : 100}}</p>
+                        <p>{{transform(item?.product.product_description)}}</p>
                     </td>
                     <td>
                         <div class="wrapper">

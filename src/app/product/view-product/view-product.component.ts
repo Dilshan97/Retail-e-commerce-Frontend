@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/service/product/product.service';
+import { Cart } from 'src/app/shared/cart';
 
 @Component({
   selector: 'app-view-product',
@@ -31,6 +32,17 @@ export class ViewProductComponent implements OnInit {
         console.log(err);
       });
     });
+  }
+
+  addToCart(product) {
+    Cart.addToCart(product);
+  }
+
+  transform(value: string, limit = 25, completeWords = false, ellipsis = '...') {
+    if (completeWords) {
+      limit = value.substr(0, limit).lastIndexOf(' ');
+    }
+    return value.length > limit ? value.substr(0, limit) + ellipsis : value;
   }
 
 }

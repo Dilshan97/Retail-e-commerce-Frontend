@@ -47,4 +47,9 @@ export class HeaderComponent implements OnInit {
     var aside2 = document.getElementById('profile');
     aside2.classList.toggle("dis-block");
   }
+
+  categoryToggle() {
+    var aside3 = document.getElementById('category');
+    aside3.classList.toggle("dis-block");
+  }
 }

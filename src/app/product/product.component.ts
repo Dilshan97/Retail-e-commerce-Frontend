@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../service/product/product.service';
+import { Cart } from '../shared/cart';
 
 @Component({
   selector: 'app-product',
@@ -27,33 +28,13 @@ export class ProductComponent implements OnInit {
 
 
   addToCart(product) {
-    let local_storage;
-    let itemsInCart = []
-    this.items = {
-      product: product,
-      quantity: 1,
+    Cart.addToCart(product);
+  }
+
+  transform(value: string, limit = 25, completeWords = false, ellipsis = '...') {
+    if (completeWords) {
+      limit = value.substr(0, limit).lastIndexOf(' ');
     }
-    if (localStorage.getItem('cart') == null) {
-      local_storage = [];
-      itemsInCart.push(this.items);
-      localStorage.setItem('cart', JSON.stringify(itemsInCart));
-    }
-    else {
-      local_storage = JSON.parse(localStorage.getItem('cart'));
-      for (var i in local_storage) {
-        if (this.items.product.id == local_storage[i].product.id) {
-          local_storage[i].quantity += 1;
-          this.items = null;
-          break;
-        }
-      }
-      if (this.items) {
-        itemsInCart.push(this.items);
-      }
-      local_storage.forEach(function (item) {
-        itemsInCart.push(item);
-      })
-      localStorage.setItem('cart', JSON.stringify(itemsInCart));
-    }
+    return value.length > limit ? value.substr(0, limit) + ellipsis : value;
   }
 }

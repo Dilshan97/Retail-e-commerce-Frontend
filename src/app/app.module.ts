@@ -8,7 +8,6 @@ import { FooterComponent } from './component/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { CartComponent } from './cart/cart.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,8 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
-    CartComponent
+    FooterComponent
   ],
   imports: [
     CommonModule,

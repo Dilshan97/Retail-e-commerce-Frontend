@@ -17,13 +17,12 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" (click)="profileToggle()">
+          <a class="nav-link dropdown-toggle" (click)="categoryToggle()">
             Shop By Category
-            <ul class="dropdown-menu" id="profile">
+            <ul class="dropdown-menu" id="category">
               <li *ngFor="let product_category of product_categories;">
                 <a class="dropdown-item" routerLink="/product/category/{{product_category?.category_slug}}">{{product_category?.category_name}}</a>
               </li>
-              
             </ul>
           </a>
         </li>

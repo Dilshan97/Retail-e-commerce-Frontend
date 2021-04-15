@@ -7,3 +7,9 @@
   display: block !important;
   transition: all .5s ease;
 }
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #dc3545;
+}
