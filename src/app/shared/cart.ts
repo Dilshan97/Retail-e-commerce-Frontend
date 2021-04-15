@@ -48,9 +48,6 @@ export class Cart {
         index = i;
       }
     }
-
-    console.log(index);
-
     shopping_cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(shopping_cart));
 

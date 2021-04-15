@@ -1,7 +1,5 @@
 .product-image {
-    padding: .25rem;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
+    padding: 13px;
     border-radius: .25rem;
     max-width: 100%;
     height: auto;
@@ -14,10 +12,6 @@
 
 h2 {
     font-size: 23px;
-}
-
-.product-margin {
-    margin-left: 15px;
 }
 
 .remove-product {

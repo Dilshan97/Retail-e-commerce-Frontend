@@ -51,17 +51,6 @@ export class CartComponent implements OnInit {
     this.getItems();
   }
 
-  value = 0;
-
-  handleMinus() {
-    if (this.value != 0) {
-      this.value--;
-    }
-  }
-  handlePlus() {
-    this.value++;
-  }
-
   transform(value: string, limit = 50, completeWords = false, ellipsis = '...') {
     if (completeWords) {
       limit = value.substr(0, limit).lastIndexOf(' ');
@@ -79,4 +68,12 @@ export class CartComponent implements OnInit {
     aside2[0].classList.remove('flipped');
   }
 
+  changeQty(index, event) {
+    let array = JSON.parse(localStorage.getItem('cart'));
+    array[index].quantity = Number(event.target.value);
+    localStorage.removeItem('cart');
+    localStorage.setItem('cart', JSON.stringify(array));
+    this.getItems();
+    this.getBill();
+  }
 }
