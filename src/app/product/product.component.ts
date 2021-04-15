@@ -37,4 +37,13 @@ export class ProductComponent implements OnInit {
     }
     return value.length > limit ? value.substr(0, limit) + ellipsis : value;
   }
+
+  scrollDown() {
+    window.scroll({ 
+      top: 500, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+
+  }
 }

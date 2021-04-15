@@ -1,8 +1,6 @@
-
-
 <div class="row padding">
-    <h2 class="mb-3">Shppoing Card</h2>
     <div class="col-md-8">
+        <h2 class="mb-3">Shppoing Card</h2>
         <table>
             <tr *ngFor="let item of cart_items; let i = index" class="mb-3">
 
@@ -14,21 +12,67 @@
                     <strong class="product-margin">{{item?.product.product_name}}</strong>
                     <p class="product-margin">{{transform(item?.product.product_description)}}</p>
                 </td>
-                
+
                 <td>
                     <strong>LKR {{item?.quantity * item?.product.price}}</strong>
                 </td>
 
                 <td>
-                    <span class="remove-product" (click)="remove_product(item)"><i class="far fa-times-circle"></i></span>
+                    <span class="remove-product" (click)="remove_product(item)"><i
+                            class="far fa-times-circle"></i></span>
                 </td>
             </tr>
+
         </table>
     </div>
-    
+
     <div class="col-md-4">
+        <h2 class="mb-3">Card Details</h2>
         <div class="card">
+            <div class="payment">
+                <ngx-payment-card #ngxPaymentCard 
+                    [IBAN]="this.cardForm.value.iban"
+                    [cardNumber]="+this.cardForm.value.cNumber" 
+                    [securityCode]="this.cardForm.value.sc"
+                    [name]="this.cardForm.value.name" 
+                    [expirationDate]="this.cardForm.value.expire_date | date: 'shortDate'">
+                </ngx-payment-card>
+            </div>
             <div class="card-body">
+
+                <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" id="ngxPaymentCard">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" formControlName="iban" id="iban" placeholder="IBAN">
+                        <label for="iban">IBAN</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" formControlName="cNumber" id="cardno"
+                            placeholder="Card Number">
+                        <label for="cardno">Card Number</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" formControlName="name" id="cardholder"
+                            placeholder="Card Holder" (click)="unflip()">
+                        <label for="cardholder">Card Holder</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" formControlName="sc" id="securitycode"
+                            placeholder="Security Code" (click)="flip()">
+                        <label for="securitycode">Security Code</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" formControlName="expire_date" id="expire_date"
+                            placeholder="Security Code">
+                        <label for="expire_date">Expire Date</label>
+                    </div>
+
+                    <button class="btn btn-danger" [disabled]="!this.cardForm.valid">Checkout</button>                    
+                </form>
 
             </div>
         </div>
