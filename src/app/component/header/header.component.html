@@ -44,6 +44,7 @@
             Hi {{this.authService.loggedUserName()}} !
           </a>
           <ul class="dropdown-menu" id="profile">
+            <li><a class="dropdown-item" routerLink="admin">Dashboard</a></li>
             <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
           </ul>
         </li>
