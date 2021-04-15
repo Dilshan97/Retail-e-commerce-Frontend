@@ -18,13 +18,13 @@
                             <img src="{{item?.product.product_image}}" class="product-image" loading="lazy">
                         </td>
         
-                        <td>
+                        <td style="min-width: 386px;">
                             <strong class="product-margin">{{item?.product.product_name}}</strong>
                             <p class="product-margin">{{transform(item?.product.product_description)}}</p>
                         </td>
         
-                        <td class="text-center" style="min-width: 50px;">
-                            <input type="number" name="qty_{{i}}" value="{{item?.quantity}}" (change)="changeQty(i, $event)" style="width: 38%;">
+                        <td class="text-center" >
+                            <input type="number" name="qty_{{i}}" class="form-control" min="1" value="{{item?.quantity}}" (change)="changeQty(i, $event)">
                         </td>
         
                         <td class="text-right" style="min-width: 88px;">

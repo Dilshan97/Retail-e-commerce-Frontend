@@ -27,6 +27,11 @@
 
 .product-name {
   font-size: 20px;
+  cursor: pointer;
+}
+
+.product-name:focus {
+  outline: none;
 }
 
 @-webkit-keyframes mover {

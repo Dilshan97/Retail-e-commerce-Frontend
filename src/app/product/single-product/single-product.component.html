@@ -1,0 +1,22 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item"><a>{{product?.category}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{transformText(product_slug) | titlecase}}</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{product?.product_image}}" alt="" class="product-image" loading="lazy">
+    </div>
+    <div class="col-md-6">
+        <h2>{{product?.product_name}}</h2>
+        <h6 class="price mt-3"><strong>LKR. {{product?.price}}</strong></h6>
+        <button class="btn btn-danger mt-3" (click)="addToCart(product)">Add to cart</button>
+        <div class="description mt-5">
+            <strong class="mt-2">About this product</strong>
+            <p class="mt-3">{{product?.product_description}}</p>
+        </div>
+    </div>
+</div>
