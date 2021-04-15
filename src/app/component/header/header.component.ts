@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { CartService } from 'src/app/service/cart/cart.service';
 import { ProductCategoryService } from 'src/app/service/product_category/product-category.service';
 
 @Component({
@@ -14,11 +16,17 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    public productCategoryService: ProductCategoryService
+    public productCategoryService: ProductCategoryService,
+    private  cartService: CartService
   ) { }
 
   ngOnInit() {
-    this.item_count = JSON.parse(localStorage.getItem('cart'));
+
+    this.cartService.getCart().subscribe(res => {
+      if(res) {
+        this.item_count = res;
+      }
+    });
 
     this.productCategoryService.getProductCatgories().subscribe(res => {
       if(res) {
@@ -26,6 +34,15 @@ export class HeaderComponent implements OnInit {
       }
     }, err => {
       console.log(err);
+    });
+
+  }
+
+  ngDoCheck() {
+    this.cartService.getCart().subscribe(res => {
+      if(res) {
+        this.item_count = res;
+      }
     });
   }
 
@@ -52,4 +69,6 @@ export class HeaderComponent implements OnInit {
     var aside3 = document.getElementById('category');
     aside3.classList.toggle("dis-block");
   }
+
+  
 }
