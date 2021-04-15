@@ -35,7 +35,7 @@ export class CartComponent implements OnInit {
     this.value++;    
   }
 
-  transform(value: string, limit = 25, completeWords = false, ellipsis = '...') {
+  transform(value: string, limit = 50, completeWords = false, ellipsis = '...') {
     if (completeWords) {
       limit = value.substr(0, limit).lastIndexOf(' ');
     }

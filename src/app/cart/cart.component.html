@@ -1,41 +1,36 @@
-<div class="row justify-content-center">
-    <div class="col-md-9">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Image</th>
-                    <th>Item Name</th>
-                    <th>Item Qty</th>
-                    <th>Price</th>
-                    <th>Action(s)</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                <tr *ngFor="let item of cart_items; let i = index">
-                    <td>{{item?.product.id}}</td>
-                    <td>
-                        <img src="{{item?.product.product_image}}" class="img-thumbnail">
-                    </td>
-                    <td>
-                        <strong>{{item?.product.product_name}}</strong>
-                        <p>{{transform(item?.product.product_description)}}</p>
-                    </td>
-                    <td>
-                        <div class="wrapper">
-                            <button class="plusminus" (click)="handleMinus()">-</button>
-                            <input type="number" class="num_{{i}}" value="{{item?.quantity}}"  />
-                            <!-- <input type="number" class="num_{{i}}" value="{{item?.quantity}}"  [(ngModel)]="value"/> -->
-                            <button class="plusminus" (click)="handlePlus()">+</button>
-                          </div>
-                    </td>
-                    <td>{{item?.quantity * item?.product.price}}</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm" (click)="remove_product(item)">Remove</button>
-                    </td>
-                </tr>
-            </tbody>
+
+
+<div class="row padding">
+    <h2 class="mb-3">Shppoing Card</h2>
+    <div class="col-md-8">
+        <table>
+            <tr *ngFor="let item of cart_items; let i = index" class="mb-3">
+
+                <td style="width: 15%">
+                    <img src="{{item?.product.product_image}}" class="product-image">
+                </td>
+
+                <td>
+                    <strong class="product-margin">{{item?.product.product_name}}</strong>
+                    <p class="product-margin">{{transform(item?.product.product_description)}}</p>
+                </td>
+                
+                <td>
+                    <strong>LKR {{item?.quantity * item?.product.price}}</strong>
+                </td>
+
+                <td>
+                    <span class="remove-product" (click)="remove_product(item)"><i class="far fa-times-circle"></i></span>
+                </td>
+            </tr>
         </table>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+
+            </div>
+        </div>
     </div>
 </div>
