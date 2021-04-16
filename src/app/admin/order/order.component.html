@@ -10,28 +10,28 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Cart Id</th>
-                    <th>Items</th>
-                    <th>Price</th>
-                    <th>Status</th>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Cart Id</th>
+                    <th class="text-center">Items</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Status</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr *ngFor="let order of orders; let i = index">
-                    <td>{{i+1}}</td>
-                    <td>{{order?.cart_id}}</td>
+                    <td class="align-middle">{{i+1}}</td>
+                    <td class="align-middle">{{order?.cart_id}}</td>
                     <td>
                         <div *ngFor="let item of order?.items;">
                             <p>{{item?.item}}</p>
                             <p>{{item?.item_qty}} x LKR {{item?.price}}</p>
                         </div>
                     </td>
-                    <td>
+                    <td class="align-middle">
                         LKR {{getTotal(order?.items)}}
                     </td>
-                    <td>{{order?.status | titlecase}}</td>
+                    <td class="align-middle">{{order?.status | titlecase}}</td>
                 </tr>
             </tbody>
         </table>

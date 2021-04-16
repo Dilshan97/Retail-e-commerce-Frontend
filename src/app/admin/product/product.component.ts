@@ -22,4 +22,9 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  deleteProduct(id) {
+    console.log(id);
+    
+  }
+
 }

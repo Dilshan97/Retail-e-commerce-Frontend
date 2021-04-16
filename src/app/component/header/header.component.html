@@ -18,7 +18,7 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" (click)="categoryToggle()">
-            Shop By Category
+            Categories
             <ul class="dropdown-menu" id="category">
               <li *ngFor="let product_category of product_categories;">
                 <a class="dropdown-item" routerLink="/product/category/{{product_category?.category_slug}}">{{product_category?.category_name}}</a>
@@ -43,12 +43,18 @@
           <a class="nav-link dropdown-toggle" (click)="profileToggle()">
             Hi {{this.authService.loggedUserName()}} !
           </a>
-          <ul class="dropdown-menu" id="profile">
+          <ul class="dropdown-menu" id="profile" *ngIf="this.authService.isAdmin()">
             <li><a class="dropdown-item" routerLink="admin">Dashboard</a></li>
             <li><a class="dropdown-item" routerLink="admin/orders">Orders</a></li>
             <li><a class="dropdown-item" routerLink="admin/products">Products</a></li>
             <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
           </ul>
+
+          <ul class="dropdown-menu" id="profile" *ngIf="!this.authService.isAdmin()">
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
+
+
         </li>
       </ul>
     </div>

@@ -57,6 +57,21 @@ export class AuthService {
     }
   }
 
+  isAdmin() {
+    if (localStorage.getItem('auth') != null) {
+      let auth = JSON.parse(localStorage.getItem('auth'));
+      if (auth.user != null) {
+        if (auth.user.user_level != null) {
+          if(auth.user.user_level == 'shop_admin') {
+            return true;
+          }
+        }
+      }
+    } else {
+      return false;
+    }
+  }
+
   isCustomer() {
     if (localStorage.getItem('auth') != null) {
       let auth = JSON.parse(localStorage.getItem('auth'));
