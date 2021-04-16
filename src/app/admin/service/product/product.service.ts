@@ -22,4 +22,8 @@ export class ProductService {
   createProduct(product) {
     return this.http.post(environment.product_microservice_url + '/product/create', product);
   }
+
+  updateProduct(id, product) {
+    return this.http.put(environment.product_microservice_url + `/product/update/${id}`, product);
+  }
 }

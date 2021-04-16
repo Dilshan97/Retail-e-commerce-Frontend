@@ -57,7 +57,6 @@ export class CreateComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.createForm.value);
     this.productService.createProduct(this.createForm.value).subscribe(res => {
       if(res) {
         this.toast.success('Product Added', 'Success !');

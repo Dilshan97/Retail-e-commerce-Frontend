@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ProductCategoryService } from '../../service/product-category/product-category.service';
+import { ProductService } from '../../service/product/product.service';
 
 @Component({
   selector: 'app-edit',
@@ -7,9 +12,84 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditComponent implements OnInit {
 
-  constructor() { }
+  updateForm: FormGroup;
+  product_categories = [];
+  product_image;
+  product_id;
 
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private productCategoryService: ProductCategoryService,
+    private productService: ProductService,
+    private toast: ToastrService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
+
+  ngOnInit() {
+    this.updateForm = this.fb.group({
+      product_category_id: ['', Validators.required],
+      product_name: ['', Validators.required],
+      product_description: ['', Validators.required],
+      product_image: ['', Validators.required],
+      product_image_source: ['', Validators.required],
+      price: ['', Validators.required],
+      stock: ['', Validators.required],
+      product_image_removed: ['']
+    });
+
+    this.productCategoryService.getProductCatgories().subscribe(res => {
+      if (res) {
+        this.product_categories = res['product_category_list'];
+      }
+    })
+
+    this.route.params.subscribe(params => {
+      const postId = params['id'];
+      this.product_id = postId;
+      this.productService.getProduct(this.product_id).subscribe(res => {
+        if (res) {
+          this.editProduct(res['product']);
+        }
+      });
+    });
   }
 
+  editProduct(product) {
+    this.updateForm.patchValue({
+      product_category_id: product?.product_category_id,
+      product_name: product?.product_name,
+      product_description: product?.product_description,
+      stock: product?.stock,
+      price: product?.price
+    });
+
+    this.product_image = product?.product_image;
+  }
+
+  getImage(event) {
+    const control = this.updateForm.controls['product_image'];
+
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.updateForm.patchValue({
+          product_image_source: event.target.result,
+          product_image_removed: false
+        });
+        this.product_image = event.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  submit() {
+    this.productService.updateProduct(this.product_id, this.updateForm.value).subscribe(res => {
+      if(res) {
+        this.toast.success('Product Updated', 'Success !');
+        this.updateForm.reset();
+        this.router.navigate(['/admin/products']);
+      }
+    });
+  }
 }
