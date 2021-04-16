@@ -95,18 +95,23 @@ export class CartComponent implements OnInit {
 
   checkout() {
     const result = Object.assign({}, { cart_id: Cart.getCartId() }, { card_dtails: this.cardForm.value }, { items: this.cart_items }, { auth: this.authService.authDetails() });
-    console.log(result);
 
-    this.orderService.createOrder(result).subscribe(res => {
-      if (res) {
-        this.cardForm.reset();
-        localStorage.setItem('cart', JSON.stringify([]));
-        localStorage.removeItem('cart_id');
-        this.toastr.success('Order Placed', 'Success !');
-        this.router.navigate(['/']);
-      }
-    }, err => {
-      console.log(err);
-    });
+    if(this.authService.isLogged()) {
+      this.orderService.createOrder(result).subscribe(res => {
+        if (res) {
+          this.cardForm.reset();
+          localStorage.setItem('cart', JSON.stringify([]));
+          localStorage.removeItem('cart_id');
+          this.toastr.success('Order Placed', 'Success !');
+          this.router.navigate(['/']);
+        }
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.toastr.warning('Please signin first', 'Warning !');
+      this.router.navigate(['auth/login']);
+    }
+    
   }
 }
