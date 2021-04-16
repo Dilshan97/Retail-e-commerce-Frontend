@@ -62,7 +62,7 @@
             </div>
             <div class="card-body">
 
-                <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" id="ngxPaymentCard">
+                <form [formGroup]="cardForm" (ngSubmit)="checkout()" id="ngxPaymentCard">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" formControlName="iban" id="iban" placeholder="IBAN">
@@ -93,7 +93,10 @@
                         <label for="expire_date">Expire Date</label>
                     </div>
 
-                    <button class="btn btn-danger" [disabled]="!this.cardForm.valid">Checkout</button>                    
+                    <button class="btn btn-danger" [disabled]="cart_validity">Checkout</button> 
+                    
+                    <p>{{cardForm.invalid}}</p>
+                    <p>{{cart_validity}}</p>
                 </form>
 
             </div>

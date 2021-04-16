@@ -13,9 +13,15 @@ export class Cart {
       local_storage = [];
       itemsInCart.push(this.items);
       localStorage.setItem('cart', JSON.stringify(itemsInCart));
+      localStorage.setItem('cart_id', new Date().getTime().toString());
     }
     else {
       local_storage = JSON.parse(localStorage.getItem('cart'));
+
+      if(local_storage.length == 0) {
+        localStorage.setItem('cart_id', new Date().getTime().toString());
+      }
+
       for (var i in local_storage) {
         if (this.items.product.id == local_storage[i].product.id) {
           local_storage[i].quantity += 1;
@@ -51,6 +57,9 @@ export class Cart {
     shopping_cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(shopping_cart));
 
+    if(shopping_cart.length == 0) {
+      localStorage.removeItem('cart_id');
+    }
     this.getCartItems();
   }
 
@@ -64,4 +73,7 @@ export class Cart {
     return total;
   }
 
+  static getCartId() {
+    return Number(localStorage.getItem('cart_id'));
+  }
 }

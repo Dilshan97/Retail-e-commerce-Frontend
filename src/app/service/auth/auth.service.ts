@@ -37,14 +37,61 @@ export class AuthService {
   }
 
   loggedUserName() {
-    if(localStorage.getItem('auth') != null) {
+    if (localStorage.getItem('auth') != null) {
       if (JSON.parse(localStorage.getItem('auth')).user != null) {
         return JSON.parse(localStorage.getItem('auth')).user.username;
       }
     }
   }
 
-  getDashboardLink() {
-      return '';
+  isShopAdmin() {
+    if (localStorage.getItem('auth') != null) {
+      let auth = JSON.parse(localStorage.getItem('auth'));
+      if (auth.user != null) {
+        if (auth.user.user_level != null) {
+          return auth.user.user_level == 'shop_admin';
+        }
+      }
+    } else {
+      return false;
+    }
   }
+
+  isCustomer() {
+    if (localStorage.getItem('auth') != null) {
+      let auth = JSON.parse(localStorage.getItem('auth'));
+      if (auth.user != null) {
+        if (auth.user.user_level != null) {
+          return auth.user.user_level == 'customer';
+        }
+      }
+    } else {
+      return false;
+    }
+  }
+
+  authDetails() {
+    if (localStorage.getItem('auth') != null) {
+      let auth = JSON.parse(localStorage.getItem('auth'));
+      if (auth.user != null) {
+        if (auth.user.user_level != null) {
+          return auth;
+        }
+      }
+    } else {
+      return false;
+    }
+  }
+
+
+  getDashboardLink() {
+    if(this.isShopAdmin()) {
+      return 'admin';
+    } else if(this.isCustomer()) {
+      return '/';
+    } else {
+      return 'auth/login';
+    }
+  }
+
 }
