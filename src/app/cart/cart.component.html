@@ -2,46 +2,50 @@
     <div class="col-md-8">
         <h2 class="mb-3">Shppoing Card</h2>
 
-        <div class="text-center" *ngIf="cart_items.length == 0">
-            <img src="assets/Add to Cart-cuate.svg" class="empty-cart ">
-            <h3><strong>Your cart is empty !</strong></h3>
-            <p>Add something to make me happy :)</p>
-            <button class="btn btn-danger" routerLink="/">Shop here</button>
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center" *ngIf="cart_items.length == 0">
+                    <img src="assets/Add to Cart-cuate.svg" class="empty-cart ">
+                    <h3><strong>Your cart is empty !</strong></h3>
+                    <p>Add something to make me happy :)</p>
+                    <button class="btn btn-danger" routerLink="/">Shop here</button>
+                </div>
+        
+                <table *ngIf="cart_items.length != 0" class="table table-striped">
+                    <tr *ngFor="let item of cart_items; let i = index" class="mb-3">
+        
+                        <td style="width: 15%">
+                            <img src="{{item?.product.product_image}}" class="product-image" loading="lazy">
+                        </td>
+        
+                        <td style="min-width: 386px;">
+                            <strong class="product-margin">{{item?.product.product_name}}</strong>
+                            <p class="product-margin">{{transform(item?.product.product_description)}}</p>
+                        </td>
+        
+                        <td class="text-center" >
+                            <input type="number" name="qty_{{i}}" class="form-control" min="1" value="{{item?.quantity}}" (change)="changeQty(i, $event)">
+                        </td>
+        
+                        <td class="text-right" style="min-width: 88px;">
+                            <strong class="text-right">LKR {{item?.quantity * item?.product.price}}</strong>
+                        </td>
+        
+                        <td class="text-center">
+                            <span class="remove-product" (click)="remove_product(item)"><i
+                                    class="far fa-times-circle"></i></span>
+                        </td>
+                    </tr>
+        
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Subtotal</strong></td>
+                        <td><strong>LKR {{total_bill}}</strong></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
-        <table *ngIf="cart_items.length != 0">
-            <tr *ngFor="let item of cart_items; let i = index" class="mb-3">
-
-                <td style="width: 15%">
-                    <img src="{{item?.product.product_image}}" class="product-image">
-                </td>
-
-                <td>
-                    <strong class="product-margin">{{item?.product.product_name}}</strong>
-                    <p class="product-margin">{{transform(item?.product.product_description)}}</p>
-                </td>
-
-                <td class="text-center">
-                    {{item?.quantity}}
-                </td>
-
-                <td class="text-right">
-                    <strong class="text-right">LKR {{item?.quantity * item?.product.price}}</strong>
-                </td>
-
-                <td class="text-center">
-                    <span class="remove-product" (click)="remove_product(item)"><i
-                            class="far fa-times-circle"></i></span>
-                </td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td><strong>Subtotal</strong></td>
-                <td><strong>LKR {{total_bill}}</strong></td>
-            </tr>
-        </table>
     </div>
 
     <div class="col-md-4">
@@ -58,7 +62,7 @@
             </div>
             <div class="card-body">
 
-                <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" id="ngxPaymentCard">
+                <form [formGroup]="cardForm" (ngSubmit)="checkout()" id="ngxPaymentCard">
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" formControlName="iban" id="iban" placeholder="IBAN">
@@ -89,7 +93,10 @@
                         <label for="expire_date">Expire Date</label>
                     </div>
 
-                    <button class="btn btn-danger" [disabled]="!this.cardForm.valid">Checkout</button>                    
+                    <button class="btn btn-danger" [disabled]="cart_validity">Checkout</button> 
+                    
+                    <p>{{cardForm.invalid}}</p>
+                    <p>{{cart_validity}}</p>
                 </form>
 
             </div>

@@ -1,0 +1,43 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Products</li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <a routerLink="./create" class="btn btn-success btn-sm mt-3 mb-3"><i class="fas fa-plus"></i> Create</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Image</th>
+                    <th>Product Name</th>
+                    <th class="text-center">Price</th>
+                    <th>Category</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-center">Action(s)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let product of products; let i = index">
+                    <td class="text-center">{{i+1}}</td>
+                    <td class="text-center">
+                        <img src="{{product?.product_image}}" class="product-image">
+                    </td>
+                    <td>{{product?.product_name}}</td>
+                    <td class="text-center">LKR {{product?.price}}</td>
+                    <td>{{product?.category}}</td>
+                    <td class="text-center">{{product?.stock}}</td>
+                    <td class="text-center">
+                        <a routerLink="./edit/{{product?.id}}" class="btn btn-warning btn-sm mx-1"><i class="fas fa-edit"></i> Edit</a>
+                        <button class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

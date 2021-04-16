@@ -1,0 +1,8 @@
+.product-image{
+    max-width: 80%;
+    height: auto;
+}
+
+.description strong {
+    border-bottom: 1px solid #dc3545;
+}

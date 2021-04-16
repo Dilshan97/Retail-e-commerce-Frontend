@@ -1,0 +1,39 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Orders</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Cart Id</th>
+                    <th>Items</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let order of orders; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{order?.cart_id}}</td>
+                    <td>
+                        <div *ngFor="let item of order?.items;">
+                            <p>{{item?.item}}</p>
+                            <p>{{item?.item_qty}} x LKR {{item?.price}}</p>
+                        </div>
+                    </td>
+                    <td>
+                        LKR {{getTotal(order?.items)}}
+                    </td>
+                    <td>{{order?.status | titlecase}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

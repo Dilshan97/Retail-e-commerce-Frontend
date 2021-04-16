@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../service/auth/auth.service';
+import { OrderService } from '../service/order/order.service';
 import { Cart } from '../shared/cart';
 
 @Component({
@@ -13,10 +16,14 @@ export class CartComponent implements OnInit {
   cart_items;
   total_bill;
   cardForm: FormGroup;
+  cart_validity;
 
   constructor(
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService,
+    private orderService: OrderService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,10 +37,6 @@ export class CartComponent implements OnInit {
 
     this.getItems();
     this.getBill();
-  }
-
-  onSubmit(){
-    console.log(this.cardForm.value)
   }
 
   getItems() {
@@ -51,17 +54,6 @@ export class CartComponent implements OnInit {
     this.getItems();
   }
 
-  value = 0;
-
-  handleMinus() {
-    if (this.value != 0) {
-      this.value--;
-    }
-  }
-  handlePlus() {
-    this.value++;
-  }
-
   transform(value: string, limit = 50, completeWords = false, ellipsis = '...') {
     if (completeWords) {
       limit = value.substr(0, limit).lastIndexOf(' ');
@@ -70,8 +62,8 @@ export class CartComponent implements OnInit {
   }
 
   flip() {
-      var aside2 = document.getElementsByClassName('creditcard');
-      aside2[0].classList.add('flipped');
+    var aside2 = document.getElementsByClassName('creditcard');
+    aside2[0].classList.add('flipped');
   }
 
   unflip() {
@@ -79,4 +71,42 @@ export class CartComponent implements OnInit {
     aside2[0].classList.remove('flipped');
   }
 
+  changeQty(index, event) {
+    let array = JSON.parse(localStorage.getItem('cart'));
+    array[index].quantity = Number(event.target.value);
+    localStorage.removeItem('cart');
+    localStorage.setItem('cart', JSON.stringify(array));
+    this.getItems();
+    this.getBill();
+  }
+
+  ngDoCheck() {
+    if (this.cart_items.length == 0) {
+      if (this.cardForm.invalid) {
+        this.cart_validity = true;
+      }
+      else {
+        this.cart_validity = false;
+      }
+    } else {
+      this.cart_validity = false;
+    }
+  }
+
+  checkout() {
+    const result = Object.assign({}, { cart_id: Cart.getCartId() }, { card_dtails: this.cardForm.value }, { items: this.cart_items }, { auth: this.authService.authDetails() });
+    console.log(result);
+
+    this.orderService.createOrder(result).subscribe(res => {
+      if (res) {
+        this.cardForm.reset();
+        localStorage.setItem('cart', JSON.stringify([]));
+        localStorage.removeItem('cart_id');
+        this.toastr.success('Order Placed', 'Success !');
+        this.router.navigate(['/']);
+      }
+    }, err => {
+      console.log(err);
+    });
+  }
 }

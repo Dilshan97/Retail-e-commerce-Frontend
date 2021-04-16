@@ -1,0 +1,106 @@
+<div class="row padding">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Customers</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card shadow mb-5  rounded bg-info text-white">
+            <div class="card-body d-flex ">
+                <div class="inner">
+                    <h3>{{customers?.length}}</h3>
+                    <p>Customers</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow mb-5  rounded bg-success text-white">
+            <div class="card-body d-flex ">
+                <div class="inner">
+                    <h3>{{orders?.length}}</h3>
+                    <p>Orders</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow mb-5  rounded bg-warning text-dark">
+            <div class="card-body d-flex ">
+                <div class="inner">
+                    <h3>{{products?.length}}</h3>
+                    <p>Products</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-cheese"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow mb-5 rounded bg-danger text-white">
+            <div class="card-body d-flex ">
+                <div class="inner">
+                    <h3>{{categories?.length}}</h3>
+                    <p>Categories</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card shadow  mb-5  rounded">
+            <div class="card-header">
+                Registerd Customers
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>E-mail</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let customer of customers; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{customer?.first_name}}</td>
+                                <td>{{customer?.last_name}}</td>
+                                <td>{{customer?.username}}</td>
+                                <td>{{customer?.email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

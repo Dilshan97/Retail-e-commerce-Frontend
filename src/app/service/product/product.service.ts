@@ -18,4 +18,8 @@ export class ProductService {
   getProductsByCategory(slug) {
     return this.http.get(environment.product_microservice_url + `/product/category/${slug}`);
   }
+
+  getProductsBySlug(slug) {
+    return this.http.get(environment.product_microservice_url + `/product/get-product/${slug}`);
+  }
 }
