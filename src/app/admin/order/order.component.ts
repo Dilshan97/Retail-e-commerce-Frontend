@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../service/customer/customer.service';
+import { OrderService } from '../service/order/order.service';
 
 @Component({
   selector: 'app-order',
@@ -8,20 +8,25 @@ import { CustomerService } from '../service/customer/customer.service';
 })
 export class OrderComponent implements OnInit {
 
-  customers = [];
+  orders = [];
   
   constructor(
-    private customerService: CustomerService
+    private orderService: OrderService
   ) { }
 
   ngOnInit() {
-    this.customerService.getCustomers().subscribe(res => {
+    this.orderService.getOrders().subscribe(res => {
       if(res) {
-        this.customers = res['customer_list'];
+        this.orders = res['order_list'];
       }
-    }, err => {
-      console.log(err);
     });
   }
 
+  getTotal(items) {
+    let total = 0;
+    items.forEach(item => {
+      total += item.item_qty * item.price
+    });
+    return total;
+  }
 }
