@@ -94,8 +94,7 @@
     
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="formFile" class="form-label">Product Image <span
-                            class="text-danger">*</span></label>
+                        <label for="formFile" class="form-label">Product Image </label>
                         <input class="form-control" type="file" (change)="getImage($event)" formControlName="product_image">
                         <div *ngIf="updateForm.controls['product_image'].invalid && (updateForm.controls['product_image'].dirty || updateForm.controls['product_image'].touched)"
                             class="text-danger">

@@ -31,8 +31,8 @@ export class EditComponent implements OnInit {
       product_category_id: ['', Validators.required],
       product_name: ['', Validators.required],
       product_description: ['', Validators.required],
-      product_image: ['', Validators.required],
-      product_image_source: ['', Validators.required],
+      product_image: [''],
+      product_image_source: [''],
       price: ['', Validators.required],
       stock: ['', Validators.required],
       product_image_removed: ['']

@@ -26,4 +26,8 @@ export class ProductService {
   updateProduct(id, product) {
     return this.http.put(environment.product_microservice_url + `/product/update/${id}`, product);
   }
+
+  deleteProduct(id) {
+    return this.http.delete(environment.product_microservice_url + `/product/${id}`);
+  }
 }
