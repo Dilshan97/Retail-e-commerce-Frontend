@@ -20,7 +20,7 @@ export class CreateComponent implements OnInit {
     private fb: FormBuilder,
     private productCategoryService: ProductCategoryService,
     private productService: ProductService,
-    private toast: ToastrService,
+    private toastr: ToastrService,
     private router: Router
   ) { }
 
@@ -59,9 +59,31 @@ export class CreateComponent implements OnInit {
   submit() {
     this.productService.createProduct(this.createForm.value).subscribe(res => {
       if(res) {
-        this.toast.success('Product Added', 'Success !');
+        this.toastr.success('Product Added', 'Success !');
         this.createForm.reset();
         this.router.navigate(['/admin/products']);
+      }
+    }, err => {
+      let fields = err.error.errors;
+      if (fields) {
+        if (Object.keys(fields).length > 0) {
+          let list = new String("");
+          Object.keys(fields).map(
+            key => {
+              let message = fields[key];
+              Object.keys(message).map(
+                msg_index => {
+                  list = list.concat(new String(`${message[msg_index]} <br>`).toString());
+                }
+              );
+            }
+          );
+          this.toastr.error(`${list}`, 'Error !', { enableHtml: true, progressBar: true });
+        } else {
+          this.toastr.error('common error', 'Error !', { progressBar: true });
+        }
+      } else {
+        this.toastr.error('common error', 'Error !', { progressBar: true });
       }
     });
   }
