@@ -1,1 +1,123 @@
-<p>create works!</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item" aria-current="page"><a routerLink="/admin/products">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+    </ol>
+</nav>
+
+<div class="padding">
+    <form [formGroup]="createForm" (ngSubmit)="submit()">
+
+        <div class="row">
+            <div class="col-md-8">
+    
+                <div class="row mb-3">
+    
+                    <div class="col">
+                        <label for="validationCustom01" class="form-label">Select Product Category <span
+                                class="text-danger">*</span></label>
+                        <select class="form-control" formControlName="product_category_id" id="validationCustom01">
+                            <option value="">Select Category</option>
+                            <option *ngFor="let category of product_categories;" value="{{category?.id}}">
+                                {{category?.category_name}}</option>
+                        </select>
+    
+                        <div *ngIf="createForm.controls['product_category_id'].invalid && (createForm.controls['product_category_id'].dirty || createForm.controls['product_category_id'].touched)"
+                            class="text-danger">
+                            <div *ngIf="createForm.controls['product_category_id'].errors.required">
+                                Product category is required
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col">
+                        <label for="validationCustom02" class="form-label">Product Name <span
+                                class="text-danger">*</span></label>
+                        <input type="text" formControlName="product_name" class="form-control" id="validationCustom02"
+                            placeholder="Product Name">
+                        <div *ngIf="createForm.controls['product_name'].invalid && (createForm.controls['product_name'].dirty || createForm.controls['product_name'].touched)"
+                            class="text-danger">
+                            <div *ngIf="createForm.controls['product_name'].errors.required">
+                                Product name is required
+                            </div>
+                        </div>
+                    </div>
+    
+    
+                </div>
+    
+                <div class="row mb-3">
+    
+                    <div class="col">
+                        <label for="validationCustom01" class="form-label">Product Description <span
+                                class="text-danger">*</span></label>
+                        <textarea type="text" formControlName="product_description" class="form-control"
+                            id="validationCustom01" placeholder="Product Description"></textarea>
+                        <div *ngIf="createForm.controls['product_description'].invalid && (createForm.controls['product_description'].dirty || createForm.controls['product_description'].touched)"
+                            class="text-danger">
+                            <div *ngIf="createForm.controls['product_description'].errors.required">
+                                Product description is required
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <div class="row mb-3">
+    
+                    <div class="col">
+                        <label for="validationCustom01" class="form-label">Stock <span class="text-danger">*</span></label>
+                        <input type="text" formControlName="stock" class="form-control" id="validationCustom01"
+                            placeholder="Stock">
+                        <div *ngIf="createForm.controls['stock'].invalid && (createForm.controls['stock'].dirty || createForm.controls['stock'].touched)"
+                            class="text-danger">
+                            <div *ngIf="createForm.controls['stock'].errors.required">
+                                Stock is required
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col">
+                        <label for="validationCustom02" class="form-label">Price <span class="text-danger">*</span></label>
+                        <input type="text" formControlName="price" class="form-control" id="validationCustom02"
+                            placeholder="Price">
+                        <div *ngIf="createForm.controls['price'].invalid && (createForm.controls['price'].dirty || createForm.controls['price'].touched)"
+                            class="text-danger">
+                            <div *ngIf="createForm.controls['price'].errors.required">
+                                Price is required
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="formFile" class="form-label">Product Image <span
+                            class="text-danger">*</span></label>
+                        <input class="form-control" type="file" (change)="getImage($event)" formControlName="product_image">
+                        <div *ngIf="createForm.controls['product_image'].invalid && (createForm.controls['product_image'].dirty || createForm.controls['product_image'].touched)"
+                            class="text-danger">
+                            <div *ngIf="createForm.controls['product_image'].errors.required">
+                                Product image is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <button class="btn btn-success btn-sm" [disabled]="!createForm.valid">Submit</button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <img src="{{product_image}}" class="img-thumbnail" *ngIf="product_image" style="object-fit: cover;">
+                <img src="assets/productPlaceholder.png" class="img-thumbnail" *ngIf="!product_image" style="object-fit: cover;">
+            </div>
+        </div>
+    
+    </form>
+</div>

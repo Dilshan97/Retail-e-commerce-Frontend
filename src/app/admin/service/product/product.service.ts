@@ -14,4 +14,12 @@ export class ProductService {
   getProducts() {
     return this.http.get(environment.product_microservice_url + '/product');
   }
+
+  getProduct(id) {
+    return this.http.get(environment.product_microservice_url + `/product/${id}`);
+  }
+
+  createProduct(product) {
+    return this.http.post(environment.product_microservice_url + '/product/create', product);
+  }
 }
