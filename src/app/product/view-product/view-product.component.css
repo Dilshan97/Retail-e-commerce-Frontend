@@ -6,3 +6,6 @@
 .product-name:focus {
   outline: none;
 }
+.card {
+  min-height: 505px;
+}

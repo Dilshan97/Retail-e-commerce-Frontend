@@ -59,3 +59,7 @@
   -webkit-animation: mover 2s infinite alternate;
   animation: mover 2s infinite alternate;
 }
+
+.card {
+  min-height: 505px;
+}

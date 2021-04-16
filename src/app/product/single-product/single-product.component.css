@@ -6,3 +6,6 @@
 .description strong {
     border-bottom: 1px solid #dc3545;
 }
+.card {
+    min-height: 505px;
+  }
