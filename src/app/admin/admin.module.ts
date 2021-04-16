@@ -5,17 +5,17 @@ import { AdminComponent } from './admin.component';
 import { adminRoutingModule } from './admin.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrderComponent } from './order/order.component';
+import { ProductComponent } from './product/product.component';
 
 const components = [
     AdminComponent,
     DashboardComponent,
     OrderComponent,
+    ProductComponent
 ];
 
 @NgModule({
-    declarations: [
-        components   
-    ],
+    declarations: components,
     imports: [
         adminRoutingModule,
         ReactiveFormsModule,
