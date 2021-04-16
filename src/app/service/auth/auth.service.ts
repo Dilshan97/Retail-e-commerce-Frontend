@@ -23,8 +23,6 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('auth');
-    this._router.navigate(['/']);
     return this.http.post(environment.customer_microservice_url + '/auth/logout', 'logout');
   }
 
