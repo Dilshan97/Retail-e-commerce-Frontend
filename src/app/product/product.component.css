@@ -23,6 +23,13 @@
 
 .shop-here {
   cursor: pointer;
+  background-color: #dc3545;
+  transition: 0.5s;
+}
+
+.shop-here:hover {
+  background-color: #000;
+  transition: 0.5s;
 }
 
 .product-name {
