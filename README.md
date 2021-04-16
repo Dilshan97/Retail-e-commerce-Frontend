@@ -7,14 +7,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Setup Local Environment
 
-Clone the repository  
-`https://github.com/Dilshan97/Retail-e-commerce-Frontend`
-
-Change the project directory
-`cd Retail-e-commerce-Frontend`
-
-Install the dependencies using the following command
-  `npm install`
+ 1. Clone the repository 
+		 `https://github.com/Dilshan97/Retail-e-commerce-Frontend`
+ 
+ 2. Change the project directory 
+		`cd Retail-e-commerce-Frontend`
+		
+ 3. Install the dependencies using the following command 
+		 `npm install`
 
 ## Development server
 
