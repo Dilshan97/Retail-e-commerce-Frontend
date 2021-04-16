@@ -27,7 +27,6 @@ export class SingleProductComponent implements OnInit {
       this.productService.getProductsBySlug(this.product_slug ).subscribe(res => {
         if (res) {
           this.product = res['product'];
-          console.log(res);
         }
       }, err => {
         console.log(err);

@@ -27,7 +27,6 @@ export class ViewProductComponent implements OnInit {
       this.productService.getProductsByCategory(this.product_slug ).subscribe(res => {
         if (res) {
           this.products = res['product_list'];
-          console.log(res);
         }
       }, err => {
         this.products = [];

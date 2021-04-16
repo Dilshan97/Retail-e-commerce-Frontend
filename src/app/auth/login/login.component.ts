@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       this.loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
-        remember_me: ['']
+        remember_me: [false]
       });
     }
   }
@@ -40,7 +40,26 @@ export class LoginComponent implements OnInit {
       }
     }, err => {
       let fields = err.error.errors;
-      this.toastr.error(err.error.message, 'Error !');
+      if (fields) {
+        if (Object.keys(fields).length > 0) {
+          let list = new String("");
+          Object.keys(fields).map(
+            key => {
+              let message = fields[key];
+              Object.keys(message).map(
+                msg_index => {
+                  list = list.concat(new String(`${message[msg_index]} <br>`).toString());
+                }
+              );
+            }
+          );
+          this.toastr.error(`${list}`, 'Error !', { enableHtml: true, progressBar: true });
+        } else {
+          this.toastr.error('common error', 'Error !', { progressBar: true });
+        }
+      } else {
+        this.toastr.error('common error', 'Error !', { progressBar: true });
+      }
     });
   }
 

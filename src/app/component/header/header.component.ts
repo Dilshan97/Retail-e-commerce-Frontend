@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { CartService } from 'src/app/service/cart/cart.service';
@@ -17,7 +19,9 @@ export class HeaderComponent implements OnInit {
   constructor(
     public authService: AuthService,
     public productCategoryService: ProductCategoryService,
-    private  cartService: CartService
+    private cartService: CartService,
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -50,7 +54,9 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe(res => {
       if(res) {
-        console.log('successfully logout');
+        localStorage.removeItem('auth');
+        this.router.navigate(['/']);
+        this.toastr.success('Successfuly Logout', 'Success!');
       }
     });
   }
