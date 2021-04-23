@@ -18,7 +18,7 @@
                     <th class="text-center">Image</th>
                     <th>Product Name</th>
                     <th class="text-center">Price</th>
-                    <th>Category</th>
+                    <th class="text-center">Category</th>
                     <th class="text-center">Qty</th>
                     <th class="text-center">Action(s)</th>
                 </tr>
@@ -32,8 +32,11 @@
                     </td>
                     <td class="align-middle">{{product?.product_name}}</td>
                     <td class="text-center align-middle">LKR {{product?.price}}</td>
-                    <td class="align-middle">{{product?.category}}</td>
-                    <td class="text-center align-middle">{{product?.stock}}</td>
+                    <td class="align-middle text-center">{{product?.category}}</td>
+                    <td class="text-center align-middle">
+                        <span *ngIf="product?.stock != 0">{{product?.stock}}</span>
+                        <span class="badge rounded-pill bg-danger" *ngIf="product?.stock == 0">Out Of Stock</span>
+                    </td>
                     <td class="text-center align-middle">
                         <a routerLink="./edit/{{product?.id}}" class="btn btn-warning btn-sm mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"><i class="fas fa-edit"></i> </a>
                         <button class="btn btn-danger btn-sm" (click)="deleteProduct(product?.id)"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"><i class="far fa-trash-alt"></i> </button>
