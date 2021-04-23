@@ -9,15 +9,18 @@ import { OrderService } from '../service/order/order.service';
 export class OrderComponent implements OnInit {
 
   orders = [];
-  
+  loading;
+
   constructor(
     private orderService: OrderService
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.orderService.getOrders().subscribe(res => {
       if(res) {
         this.orders = res['order_list'];
+        this.loading = false;
       }
     });
   }

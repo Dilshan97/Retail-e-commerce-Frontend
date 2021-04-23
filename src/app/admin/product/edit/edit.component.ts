@@ -16,6 +16,7 @@ export class EditComponent implements OnInit {
   product_categories = [];
   product_image;
   product_id;
+  loading;
 
   constructor(
     private fb: FormBuilder,
@@ -38,9 +39,11 @@ export class EditComponent implements OnInit {
       product_image_removed: ['']
     });
 
+    this.loading = true;
     this.productCategoryService.getProductCatgories().subscribe(res => {
       if (res) {
         this.product_categories = res['product_category_list'];
+        this.loading = false;
       }
     })
 
@@ -84,13 +87,16 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
     this.productService.updateProduct(this.product_id, this.updateForm.value).subscribe(res => {
       if(res) {
         this.toastr.success('Product Updated', 'Success !');
         this.updateForm.reset();
         this.router.navigate(['/admin/products']);
+        this.loading = false;
       }
     }, err => {
+      this.loading = false;
       let fields = err.error.errors;
       if (fields) {
         if (Object.keys(fields).length > 0) {

@@ -1,3 +1,5 @@
+<div class="loading" *ngIf="this.loading">Loading&#8230;</div>
+
 <div class="row padding">
     <div class="col-md-12">
         <nav aria-label="breadcrumb">
@@ -9,7 +11,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row analytics">
     <div class="col-md-3">
         <div class="card shadow mb-5  rounded bg-info text-white">
             <div class="card-body d-flex ">
@@ -25,32 +27,36 @@
     </div>
 
     <div class="col-md-3">
-        <div class="card shadow mb-5  rounded bg-success text-white">
-            <div class="card-body d-flex ">
-                <div class="inner">
-                    <h3>{{orders?.length}}</h3>
-                    <p>Orders</p>
+        <a routerLink="/admin/orders">
+            <div class="card shadow mb-5  rounded bg-success text-white">
+                <div class="card-body d-flex ">
+                    <div class="inner">
+                        <h3>{{orders?.length}}</h3>
+                        <p>Orders</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+    
                 </div>
-                <div class="icon">
-                    <i class="fas fa-truck"></i>
-                </div>
-
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card shadow mb-5  rounded bg-warning text-dark">
-            <div class="card-body d-flex ">
-                <div class="inner">
-                    <h3>{{products?.length}}</h3>
-                    <p>Products</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-cheese"></i>
+        <a routerLink="/admin/products">
+            <div class="card shadow mb-5  rounded bg-warning text-dark">
+                <div class="card-body d-flex ">
+                    <div class="inner">
+                        <h3>{{products?.length}}</h3>
+                        <p>Products</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-cheese"></i>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <div class="col-md-3">

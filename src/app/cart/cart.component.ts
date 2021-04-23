@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
   total_bill;
   cardForm: FormGroup;
   cart_validity;
+  loading;
 
   constructor(
     private fb: FormBuilder,
@@ -35,8 +36,10 @@ export class CartComponent implements OnInit {
       expire_date: ['', Validators.required]
     });
 
+    this.loading = true;
     this.getItems();
     this.getBill();
+    this.loading = false;
   }
 
   getItems() {
@@ -94,6 +97,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
+    this.loading = true;
     const result = Object.assign({}, { cart_id: Cart.getCartId() }, { card_dtails: this.cardForm.value }, { items: this.cart_items }, { auth: this.authService.authDetails() });
 
     if(this.authService.isLogged()) {
@@ -104,6 +108,7 @@ export class CartComponent implements OnInit {
           localStorage.removeItem('cart_id');
           this.toastr.success('Order Placed', 'Success !');
           this.router.navigate(['/']);
+          this.loading = false;
         }
       }, err => {
         console.log(err);
@@ -111,6 +116,7 @@ export class CartComponent implements OnInit {
     } else {
       this.toastr.warning('Please signin first', 'Warning !');
       this.router.navigate(['auth/login']);
+      this.loading = false;
     }
     
   }

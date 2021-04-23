@@ -27,3 +27,7 @@
 .card-header{
     background-color: rgb(125 113 113 / 22%) !important;
 }
+
+.analytics a {
+    text-decoration: none;
+}

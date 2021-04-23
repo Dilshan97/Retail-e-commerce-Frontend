@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  loading;
 
   constructor(
     private fb: FormBuilder,
@@ -33,12 +34,15 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
     this.authService.login(this.loginForm.value).subscribe(res => {
       if(res) {
           localStorage.setItem('auth', JSON.stringify(res));
           this.router.navigate([this.authService.getDashboardLink()]);
+          this.loading = false;
       }
     }, err => {
+      this.loading = false;
       let fields = err.error.errors;
       if (fields) {
         if (Object.keys(fields).length > 0) {
