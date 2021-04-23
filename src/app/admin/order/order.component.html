@@ -22,18 +22,18 @@
 
             <tbody>
                 <tr *ngFor="let order of orders; let i = index">
-                    <td class="align-middle">{{i+1}}</td>
-                    <td class="align-middle">{{order?.cart_id}}</td>
+                    <td class="text-center align-middle">{{i+1}}</td>
+                    <td class="text-center align-middle">{{order?.cart_id}}</td>
                     <td>
                         <div *ngFor="let item of order?.items;">
                             <p>{{item?.item}}</p>
                             <p>{{item?.item_qty}} x LKR {{item?.price}}</p>
                         </div>
                     </td>
-                    <td class="align-middle">
+                    <td class="text-center align-middle">
                         LKR {{getTotal(order?.items)}}
                     </td>
-                    <td class="align-middle">{{order?.status | titlecase}}</td>
+                    <td class="text-center align-middle">{{order?.status | titlecase}}</td>
                 </tr>
             </tbody>
         </table>
