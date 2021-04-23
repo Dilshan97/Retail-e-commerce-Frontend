@@ -12,6 +12,7 @@ export class ProductComponent implements OnInit {
 
   products = [];
   items;
+  loading;
 
   constructor(
     private productService: ProductService,
@@ -19,9 +20,11 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.productService.getProducts().subscribe(res => {
       if (res) {
         this.products = res['product_list'];
+        this.loading = false;
       }
     }, err => {
       console.log(err);

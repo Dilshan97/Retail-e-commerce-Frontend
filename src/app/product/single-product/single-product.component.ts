@@ -13,6 +13,7 @@ export class SingleProductComponent implements OnInit {
 
   product_slug;
   product;
+  loading;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,12 +22,14 @@ export class SingleProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.route.params.subscribe(params => {
       const postSlug = params['slug'];
       this.product_slug = postSlug;
       this.productService.getProductsBySlug(this.product_slug ).subscribe(res => {
         if (res) {
           this.product = res['product'];
+          this.loading = false;
         }
       }, err => {
         console.log(err);

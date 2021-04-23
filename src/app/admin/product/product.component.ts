@@ -10,6 +10,7 @@ import { ProductService } from '../service/product/product.service';
 export class ProductComponent implements OnInit {
 
   products = [];
+  loading;
 
   constructor(
     private productService: ProductService,
@@ -21,9 +22,11 @@ export class ProductComponent implements OnInit {
   }
 
   getProducts() {
+    this.loading = true;
     this.productService.getProducts().subscribe(res => {
       if(res) {
         this.products = res['product_list'];
+        this.loading = false;
       }
     });
   }

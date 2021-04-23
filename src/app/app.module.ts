@@ -27,7 +27,11 @@ import { AuthInterceptorService } from './service/auth/auth-interceptor.service'
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      positionClass: 'toast-bottom-right',
+      progressBar: true
+    })
   ],
   providers: [
     AuthService, 

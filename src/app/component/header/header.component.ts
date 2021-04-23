@@ -75,6 +75,4 @@ export class HeaderComponent implements OnInit {
     var aside3 = document.getElementById('category');
     aside3.classList.toggle("dis-block");
   }
-
-  
 }

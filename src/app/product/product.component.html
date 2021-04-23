@@ -1,10 +1,11 @@
-
+<div class="loading" *ngIf="this.loading">Loading&#8230;</div>
 
 <div class="row align-items-center hero">
 
   <div class="col-md-6">
     <h2>Get your <span class="text-danger">Retail Items</span> from here</h2>
-    <p>Enter Sri Lanka's freshest online grocery store for all your grocery needs- fresh to frozen and everything in between! Now, you can order ALL your daily necessities from the comfort of your home or anywhere you want !</p>
+    <p>Enter Sri Lanka's freshest online grocery store for all your grocery needs- fresh to frozen and everything in
+      between! Now, you can order ALL your daily necessities from the comfort of your home or anywhere you want !</p>
     <span class="badge rounded-pill  shop-here" (click)="scrollDown()">Shop Here</span>
   </div>
 
@@ -17,22 +18,60 @@
 <div class="row">
 
   <div class="col-md-3 mb-3" *ngFor="let product of products">
-    <div class="card shadow bg-body rounded">
+    <div class="card p-card shadow bg-body rounded">
       <img src="{{product?.product_image}}" alt="{{product?.product_name}}" class="img-fluid" loading="lazy">
       <span class="badge text-dark">{{product?.category}}</span>
       <div class="card-body">
         <h4 class="product-name" routerLink="/product/{{product?.product_slug}}">{{product?.product_name}}</h4>
         <p class="card-text">{{transform(product?.product_description)}}</p>
         <p>Rs. {{product?.price}}</p>
-        <button class="btn btn-danger btn-sm" (click)="addToCart(product)"><i class="fas fa-cart-plus"></i> Add to cart</button>
-        
+        <button *ngIf="product?.stock != 0" class="btn btn-danger btn-sm" (click)="addToCart(product)"><i
+            class="fas fa-cart-plus"></i> Add to cart</button>
+        <span *ngIf="product?.stock == 0" class="text-danger">Out of Stock</span>
       </div>
     </div>
   </div>
 
-  
+
 </div>
 
+<div class="feacture row justify-content-center padding">
 
+  <div class="col-md-12 text-center mb-3">
+    <h6>Enter Sri Lanka's freshest online grocery store for all your grocery needs- fresh to frozen and everything in
+      between! Now, you can order ALL your daily necessities from the comfort of your home or anywhere you want! Choose
+      from same-day, next-day & saver to ensure you get what you need when you need it.</h6>
+  </div>
 
+  <hr>
 
+  <div class="col-md-4 text-center shadow-sm p-3 mb-5 bg-body rounded">
+    <div class="card">
+      <div class="icon">
+        <i class="fas fa-medal"></i>
+      </div>
+      <strong class="mt-2">Best Prices & Offers</strong>
+      <p>Enjoy the same lowest prices as your local Arimac Stores & Food Hall store!</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center shadow-sm p-3 mb-5 bg-body rounded">
+    <div class="card">
+      <div class="icon">
+        <i class="fas fa-business-time"></i>
+      </div>
+      <strong class="mt-2">Wide Assortment</strong>
+      <p>Choose from a variety of products from branded, chilled, fresh & frozen. New products added weekly!</p>
+    </div>
+  </div>
+
+  <div class="col-md-4 text-center  shadow-sm p-3 mb-5 bg-body rounded">
+    <div class="card">
+      <div class="icon">
+        <i class="fas fa-undo"></i>
+      </div>
+      <strong class="mt-2">Easy Returns</strong>
+      <p>Not satisfied with a product? Return it at the doorstep & get a refund within hours.</p>
+    </div>
+  </div>
+</div>

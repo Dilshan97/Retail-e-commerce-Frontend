@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   products = [];
   categories = [];
   orders = [];
+  loading;
 
   constructor(
     private customerService: CustomerService,
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.customerService.getCustomers().subscribe(res => {
       if(res) {
         this.customers = res['customer_list'];
@@ -49,6 +51,8 @@ export class DashboardComponent implements OnInit {
         this.orders = res['order_list'];
       }
     });
+
+    this.loading = false;
   }
 
 }

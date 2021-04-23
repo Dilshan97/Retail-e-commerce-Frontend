@@ -15,6 +15,7 @@ export class CreateComponent implements OnInit {
   createForm: FormGroup;
   product_categories = [];
   product_image;
+  loading;
 
   constructor(
     private fb: FormBuilder,
@@ -35,9 +36,11 @@ export class CreateComponent implements OnInit {
       stock: ['', Validators.required]
     });
 
+    this.loading = true;
     this.productCategoryService.getProductCatgories().subscribe(res => {
       if(res) {
         this.product_categories = res['product_category_list'];
+        this.loading = false;
       }
     })
   }
@@ -57,13 +60,16 @@ export class CreateComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
     this.productService.createProduct(this.createForm.value).subscribe(res => {
       if(res) {
         this.toastr.success('Product Added', 'Success !');
         this.createForm.reset();
         this.router.navigate(['/admin/products']);
+        this.loading = false;
       }
     }, err => {
+      this.loading = false;
       let fields = err.error.errors;
       if (fields) {
         if (Object.keys(fields).length > 0) {

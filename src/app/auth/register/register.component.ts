@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 export class RegisterComponent implements OnInit {
 
   signupForm: FormGroup;
+  loading;
 
   constructor(
     private fb: FormBuilder,
@@ -34,12 +35,15 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
     this.authService.register(this.signupForm.value).subscribe(res => {
       if (res) {
         localStorage.setItem('auth', JSON.stringify(res));
         this.router.navigate(['auth/login']);
+        this.loading = false;
       }
     }, err => {
+      this.loading = false;
       let fields = err.error.errors;
       if (fields) {
         if (Object.keys(fields).length > 0) {

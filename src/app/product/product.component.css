@@ -67,6 +67,37 @@
   animation: mover 2s infinite alternate;
 }
 
-.card {
+.p-card {
   min-height: 505px;
+}
+
+.feacture {
+  font-family: 'Work Sans' !important;
+  padding-top: 70px;
+}
+
+.feacture h6 {
+  line-height: 30px;
+}
+
+.feacture .card {
+  border: none !important;
+}
+
+.feacture .icon {
+  padding: 10px;
+  background-color: #dc3545;
+  color: #fff;
+  text-align: center;
+  width: 90px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+  transition: 1s;
+}
+
+.feacture .icon:hover {
+  background-color: #000;
+  transition: 1s;
 }

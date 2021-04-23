@@ -13,6 +13,7 @@ export class ViewProductComponent implements OnInit {
 
   product_slug;
   products = [];
+  loading;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,12 +22,14 @@ export class ViewProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.route.params.subscribe(params => {
       const postSlug = params['slug'];
       this.product_slug = postSlug;
       this.productService.getProductsByCategory(this.product_slug ).subscribe(res => {
         if (res) {
           this.products = res['product_list'];
+          this.loading = false;
         }
       }, err => {
         this.products = [];
