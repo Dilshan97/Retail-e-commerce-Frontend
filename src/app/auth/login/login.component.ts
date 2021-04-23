@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
           this.toastr.error('common error', 'Error !', { progressBar: true });
         }
       } else {
-        this.toastr.error('common error', 'Error !', { progressBar: true });
+        this.toastr.error(err.error.message, 'Error !', { progressBar: true });
       }
     });
   }
