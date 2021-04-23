@@ -22,6 +22,8 @@ export class OrderComponent implements OnInit {
         this.orders = res['order_list'];
         this.loading = false;
       }
+    }, err => {
+      this.loading = false;
     });
   }
 
