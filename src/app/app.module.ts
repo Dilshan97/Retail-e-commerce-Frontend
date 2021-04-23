@@ -30,6 +30,7 @@ import { AuthInterceptorService } from './service/auth/auth-interceptor.service'
     ToastrModule.forRoot({
       preventDuplicates: true,
       positionClass: 'toast-bottom-right',
+      progressBar: true
     })
   ],
   providers: [
